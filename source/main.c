@@ -1,8 +1,8 @@
-#include "quad_eq.h"
+#include "unit_tests.h"
 
 int main (void) {
 
-    quadratic_solver ();
+    unit_tests ();
     
     return 0;
 }

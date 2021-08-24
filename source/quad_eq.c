@@ -27,6 +27,7 @@ void quadratic_solver () {
             break;
         default:
             printf ("There is some error in your input, try again\n");
+            break;
         }
 
         printf ("Type q if you want to exit the program " 
@@ -52,9 +53,9 @@ ReturnedValues solve_quad_eq (double a, double b, double c, double *x1, double *
     assert (x1);
     assert (x2);
     assert (x1 != x2);
-    assert (!isnan(a));
-    assert (!isnan(b));
-    assert (!isnan(c));
+    assert (isfinite(a));
+    assert (isfinite(b));
+    assert (isfinite(c));
 
     *x1 = NAN;
     *x2 = NAN;
@@ -72,8 +73,15 @@ ReturnedValues solve_quad_eq (double a, double b, double c, double *x1, double *
             a *= 2;
             discriminant = sqrt (discriminant);
 
-            *x1 = (-b - discriminant) / 2 / a;
-            *x2 = (-b + discriminant) / 2 / a;
+            // smaller root should be placed to x1
+            if (a > 0) {
+                *x1 = (-b - discriminant) / a;
+                *x2 = (-b + discriminant) / a;
+            }
+            else {
+                *x1 = (-b + discriminant) / a;
+                *x2 = (-b - discriminant) / a;
+            }
             return TWO_ROOTS;
         }
         else {
@@ -88,8 +96,8 @@ ReturnedValues solve_quad_eq (double a, double b, double c, double *x1, double *
 
 ReturnedValues solve_linear_eq (double a, double b, double *x){
     assert (x);
-    assert (!isnan(a));
-    assert (!isnan(b));
+    assert (isfinite(a));
+    assert (isfinite(b));
 
     *x = NAN;
 
@@ -109,13 +117,13 @@ ReturnedValues solve_linear_eq (double a, double b, double *x){
 }
 
 double read_double_coef (char *name) {
+    assert (name);
+
     double x = NAN;
     printf ("%s =", name);
-    fflush (stdout);
     while (!scanf ("%lf", &x)) {
         printf ("There is an error in your input, try again:\n"
                 "%s =", name);
-        fflush (stdout);
         clear_input_buffer ();
     }
     return x;
