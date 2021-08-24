@@ -9,7 +9,7 @@ After including `"quad_eq.h"` all you need is to call the function `quadratic_so
 
 **Description**:
 
-This function solves quadratic equation in real numbers. It returns number of roots (3 means infinite roots), roots are placed to x1 and x2 (see table below). a, b, c are coefficients in this equation: `a\*x^2 + b\*x + c`
+This function solves quadratic equation in real numbers. It returns number of roots (3 means infinite roots), roots are placed to x1 and x2 (see table below). a, b, c are coefficients in this equation: `a*x^2 + b*x + c`
     
 **Arguments**:
 
