@@ -1,31 +1,15 @@
 #include "quad_eq.h"
 
-
 void quadratic_solver () {
     printf ("This is solver of quadratic equations made by Vian\n"
-        "Input real coefficients from this equation:\n"
-        "a*x^2 + b*x + c = 0\n");
+            "Input real coefficients of this equation:\n"
+            "a*x^2 + b*x + c = 0\n");
 
-    double a = 0, b = 0, c = 0, x1 = 0, x2 = 0;
+    double a = NAN, b = NAN, c = NAN, x1 = NAN, x2 = NAN;
     while (1) {
-        printf ("a =");
-        while (!scanf ("%lf", &a)) {
-            printf ("There is an error in your input, try again:\n"
-                "a =");
-            clear_input_buffer ();
-        }
-        printf ("b =");
-        while (!scanf ("%lf", &b)) {
-            printf ("There is an error in your input, try again:\n"
-                "b =");
-            clear_input_buffer ();
-        }
-        printf ("c =");
-        while (!scanf ("%lf", &c)) {
-            printf ("There is an error in your input, try again:\n"
-                "c =");
-            clear_input_buffer ();
-        }
+        a = read_double_coef ("a");
+        b = read_double_coef ("b");
+        c = read_double_coef ("c");
 
         int res = solve_quad_eq (a, b, c, &x1, &x2);
         switch (res) {
@@ -45,27 +29,35 @@ void quadratic_solver () {
             printf ("There is some error in your input, try again\n");
         }
 
-        printf ("Type q if you want to exit the program or anything else if you want to continue\n");
+        printf ("Type q if you want to exit the program " 
+                "or anything else if you want to continue\n");
+
         clear_input_buffer ();
         char c = getchar (); 
         if (c == 'q') {
-            printf ("Thanks for using my program! Bye!");
+            printf ("Thanks for using my program! Bye!\n");
             return;
         }
-        else if (c != '\n')
+        else if (c != '\n') {
             clear_input_buffer ();
+        }
     } 
 }
 
-int solve_quad_eq (double a, double b, double c, double *x1, double *x2) {
+ReturnedValues solve_quad_eq (double a, double b, double c, double *x1, double *x2) {
     // function solves quadratic equation and
     // returns number of roots (3 means infinite, -1 means error)
-    // roots are placed to x1 and x2
-    // if they are not filled there will be NaN
+    // roots are placed to x1 and x2 (see table in readme)
 
     assert (x1);
     assert (x2);
-    assert (!isnan (a + b + c));
+    assert (x1 != x2);
+    assert (!isnan(a));
+    assert (!isnan(b));
+    assert (!isnan(c));
+
+    *x1 = NAN;
+    *x2 = NAN;
 
     if (!is_equal_double (a, 0)) {
         //quadratic equation
@@ -73,53 +65,69 @@ int solve_quad_eq (double a, double b, double c, double *x1, double *x2) {
         double discriminant = b * b - 4 * a * c;
         if (is_equal_double (discriminant, 0)) {
             *x1 = -b / 2 / a;
-            *x2 = NAN;
-            return 1;
+            return ONE_ROOT;
         }
         else if (discriminant > 0) {
+            // for optimisation
+            a *= 2;
             discriminant = sqrt (discriminant);
+
             *x1 = (-b - discriminant) / 2 / a;
             *x2 = (-b + discriminant) / 2 / a;
-            return 2;
+            return TWO_ROOTS;
         }
         else {
-            *x1 = NAN;
-            *x2 = NAN;
-            return 0;
+            return NO_ROOTS;
         }
     }
     else {
         // linear equation
-
-        if (is_equal_double (b, 0)) {
-            // c = 0
-
-            if (is_equal_double (c, 0)) {
-                *x1 = NAN;
-                *x2 = NAN;
-                return 3;
-            }
-            else {
-                *x1 = NAN;
-                *x2 = NAN;
-                return 0;
-            }
-        }
-        else {
-            // b*x + c = 0
-            *x1 = -c / b;
-            return 1;
-        }
+        solve_linear_eq (b, c, x1);
     }
 }
 
-_Bool is_equal_double (double a, double b) {
+ReturnedValues solve_linear_eq (double a, double b, double *x){
+    assert (x);
+    assert (!isnan(a));
+    assert (!isnan(b));
+
+    *x = NAN;
+
+    if (is_equal_double (a, 0)) {
+        // b = 0
+
+        if (is_equal_double (b, 0))
+            return INF_ROOTS;
+        else 
+            return NO_ROOTS;
+    }
+    else {
+        // a*x + b = 0
+        *x = -b / a;
+        return ONE_ROOT;
+    }
+}
+
+double read_double_coef (char *name) {
+    double x = NAN;
+    printf ("%s =", name);
+    fflush (stdout);
+    while (!scanf ("%lf", &x)) {
+        printf ("There is an error in your input, try again:\n"
+                "%s =", name);
+        fflush (stdout);
+        clear_input_buffer ();
+    }
+    return x;
+}
+
+bool is_equal_double (double a, double b) {
     // returns true if difference 
-    // between numbers is less the DOUBLE_EPSILON
+    // between numbers is less than DOUBLE_EPSILON
     return fabs (a - b) <= DOUBLE_EPSILON;
 }
 
 void clear_input_buffer () {
     // clears input buffer until end of line
-    while (getchar () != '\n');
+    while (getchar () != '\n') { ; }
 }
