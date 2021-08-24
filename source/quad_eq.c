@@ -13,16 +13,16 @@ void quadratic_solver () {
 
         int res = solve_quad_eq (a, b, c, &x1, &x2);
         switch (res) {
-        case 0:
+        case NO_ROOTS:
             printf ("There is no real roots in this equation!\n");
             break;
-        case 1:
+        case ONE_ROOT:
             printf ("This equation has only one root: %f\n", x1);
             break;
-        case 2:
+        case TWO_ROOTS:
             printf ("This equation has two roots: %f and %f\n", x1, x2);
             break; 
-        case 3:
+        case INF_ROOTS:
             printf ("Any real number is a root of this equation\n");
             break;
         default:
@@ -128,6 +128,6 @@ bool is_equal_double (double a, double b) {
 }
 
 void clear_input_buffer () {
-    // clears input buffer until end of line
+    // clears input buffer until the end of line
     while (getchar () != '\n') { ; }
 }
