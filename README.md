@@ -9,15 +9,15 @@ After including `"quad_eq.h"` all you need is to call the function `quadratic_so
 
 **Description**:
 
-    This function solves quadratic equation in real numbers. It returns number of roots (3 means infinite roots), roots are placed to x1 and x2 (see table below). a, b, c are coefficients in this equation: `a\*x^2 + b\*x + c`
+This function solves quadratic equation in real numbers. It returns number of roots (3 means infinite roots), roots are placed to x1 and x2 (see table below). a, b, c are coefficients in this equation: `a\*x^2 + b\*x + c`
     
 **Arguments**:
 
-- 'double a' - coefficient of x^2
-- 'double b' - coefficient of x
-- 'double c' - constant coefficient
-- 'double *x1' - pointer to the first root
-- 'double *x2' - pointer to the second root
+- `double a` - coefficient of x^2
+- `double b` - coefficient of x
+- `double c` - constant coefficient
+- `double *x1` - pointer to the first root
+- `double *x2` - pointer to the second root
     
 | Returned value | Number of roots | x1 | x2 |
 | --- | --- | --- | --- |
