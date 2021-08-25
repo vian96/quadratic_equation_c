@@ -1,6 +1,7 @@
 #include "unit_tests.h"
 
-void unit_tests (){
+void unit_tests () {
+    
     double input[][3] = {
         {1, 1, 1},
         {0, 0, 0},
@@ -28,7 +29,7 @@ void unit_tests (){
         {900.988, 543.191, 755.287}
     };
     
-    double expected[][3] = {
+    DataOut expected[] = {
         {0, NAN, NAN},
         {3, NAN, NAN},
         {1, -1.0, NAN},
@@ -59,13 +60,14 @@ void unit_tests (){
     double x1 = NAN, x2 = NAN;
     for (int i = 0; i < sizeof (input) / sizeof (*input); i++) {
         int res = solve_quad_eq (input[i][0], input[i][1], input[i][2], &x1, &x2);
+
         if (check_test (res, x1, x2, expected[i])) {
             printf ("Test %d OK\n", i);
             counter++;
         }
         else
             printf ("Test %d failed! Expected: %d %f %f. Returned: %d %f %f\n", 
-                i, (int)expected[i][0], expected[i][1], expected[i][2], res, x1, x2);
+                i, expected[i].num, expected[i].x1, expected[i].x2, res, x1, x2);
     }
 
     printf ("\n%d of %d tests passed\n", 
@@ -73,8 +75,8 @@ void unit_tests (){
 }
 
 
-bool check_test (int res, double x1, double x2, double expected[3]) {
-    return is_equal_double (res, expected[0]) && 
-        (isnan (x1) && isnan (expected[1]) || is_equal_double (x1, expected[1])) &&
-        (isnan (x2) && isnan (expected[2]) || is_equal_double (x2, expected[2]));
+bool check_test (int res, double x1, double x2, DataOut expected) {
+    return (res == expected.num) && 
+        (isnan (x1) && isnan (expected.x1) || is_equal_double (x1, expected.x1)) &&
+        (isnan (x2) && isnan (expected.x1) || is_equal_double (x2, expected.x2));
 }

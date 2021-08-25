@@ -1,6 +1,7 @@
 #include "quad_eq.h"
 
 void quadratic_solver () {
+    // user interface for solving quadratic equations
     printf ("This is solver of quadratic equations made by Vian\n"
             "Input real coefficients of this equation:\n"
             "a*x^2 + b*x + c = 0\n");
@@ -45,9 +46,9 @@ void quadratic_solver () {
     } 
 }
 
-ReturnedValues solve_quad_eq (double a, double b, double c, double *x1, double *x2) {
+NumberOfRoots solve_quad_eq (double a, double b, double c, double *x1, double *x2) {
     // function solves quadratic equation and
-    // returns number of roots (3 means infinite, -1 means error)
+    // returns number of roots by enum NumberOfRoots
     // roots are placed to x1 and x2 (see table in readme)
 
     assert (x1);
@@ -94,7 +95,7 @@ ReturnedValues solve_quad_eq (double a, double b, double c, double *x1, double *
     }
 }
 
-ReturnedValues solve_linear_eq (double a, double b, double *x){
+NumberOfRoots solve_linear_eq (double a, double b, double *x){
     assert (x);
     assert (isfinite(a));
     assert (isfinite(b));
