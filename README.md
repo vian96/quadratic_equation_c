@@ -2,7 +2,7 @@
 
 This program allows you to solve quadratic and linear equations. 
 
-##Table of content
+## Table of content
 
 * [Solving equations](#solving-equations)
 * [Unit tests](#unit-tests)
