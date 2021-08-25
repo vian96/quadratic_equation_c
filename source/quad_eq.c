@@ -117,7 +117,7 @@ NumberOfRoots solve_linear_eq (double a, double b, double *x){
     }
 }
 
-double read_double_coef (char *name) {
+double read_double_coef (const char *name) {
     assert (name);
 
     double x = NAN;

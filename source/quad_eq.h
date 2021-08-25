@@ -59,7 +59,7 @@ NumberOfRoots solve_linear_eq (double a, double b, double *x);
  * User interface for reading double variable
  * @param message name of variable
 */
-double read_double_coef (char *message);
+double read_double_coef (const char *message);
 
 /// Compares two double variables
 /** 
