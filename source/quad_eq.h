@@ -21,7 +21,7 @@ const double DOUBLE_EPSILON = 1e-5;
 /// User interface for solving quadratic equations
 void quadratic_solver ();
 
-/// Solves quadratic equations in real numbers
+/// Solves quadratic equations over real numbers
 /** 
  * Roots are placed to x1 and x2 (see table)
  * a, b, c are coefficients in this equation: a*x^2 + b*x + c = 0
@@ -33,26 +33,30 @@ void quadratic_solver ();
  * | ONE_ROOT | 1 | Root | NaN |
  * | NO_ROOTS | 0 | NaN | NaN |
  * 
- * @param a The first coefficient
- * @param b The second coefficient
- * @param c The third coefficient
- * @param x1 Pointer to the first root
- * @param x2 Pointer to the second root
+ * @param[in] a The first coefficient
+ * @param[in] b The second coefficient
+ * @param[in] c The third coefficient
+ * @param[out] x1 Pointer to the first root
+ * @param[out] x2 Pointer to the second root
  * @return number of roots by enum NumberOfRoots 
 */
-NumberOfRoots solve_quad_eq (double a, double b, double c, double *x1, double *x2);
+NumberOfRoots solve_quad_eq (const double a, const double b, const double c, double *x1, double *x2);
 
 /// Solves linear equations
 /** 
  * Root is placed to x 
  * a, b are coefficients in this equation: a*x + b = 0
+ * If there is not one root then x is NaN
  * 
- * @param a The first coefficient
- * @param b The second coefficient
- * @param x Pointer to root
+ * @param[in] a The first coefficient
+ * @param[in] b The second coefficient
+ * @param[out] x Pointer to root
  * @return number of roots by enum NumberOfRoots 
 */
-NumberOfRoots solve_linear_eq (double a, double b, double *x);
+NumberOfRoots solve_linear_eq (const double a, const double b, double *x);
+
+/// Calculates discriminant
+double calc_discriminant (const double a, const double b, const double c);
 
 /// Reads double variable
 /** 
@@ -61,11 +65,14 @@ NumberOfRoots solve_linear_eq (double a, double b, double *x);
 */
 double read_double_coef (const char *message);
 
+/// Prints roots of equation
+void print_roots (NumberOfRoots num, const double x1, const double x2);
+
 /// Compares two double variables
 /** 
- * Returns true if difference between numbers is less than DOUBLE_EPSILON
+ * @return true if difference between numbers is less than DOUBLE_EPSILON
 */
-bool is_equal_double (double a, double b);
+bool is_equal_double (const double a, const double b);
 
-/// Clears input buffer until end of line for scanf
+/// Clears input buffer until the end of line
 void clear_input_buffer ();

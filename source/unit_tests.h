@@ -5,15 +5,17 @@
 typedef struct DataOut DataOut;
 #endif
 
-/// Strcture to store output data to compare
+/// Structure to store output data to compare
 struct DataOut {
-    int num;
-    double x1,x2;
+    NumberOfRoots num; ///< Number of roots of equation
+    
+    double x1; ///< The first root
+    double x2; ///< The second root
 };
 
 /// Function for unit tests
-void unit_tests ();
+bool unit_tests ();
 
 /// Function checks if expected and received are the same
-bool check_test (int res, double x1, double x2, DataOut expected);
+bool check_test (const int res, const double x1, const double x2, const DataOut expected);
 

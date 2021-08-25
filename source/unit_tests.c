@@ -1,7 +1,6 @@
 #include "unit_tests.h"
 
-void unit_tests () {
-    
+bool unit_tests () {
     double input[][3] = {
         {1, 1, 1},
         {0, 0, 0},
@@ -72,10 +71,12 @@ void unit_tests () {
 
     printf ("\n%d of %d tests passed\n", 
         counter, sizeof (input) / sizeof (*input));
+        
+    return counter == sizeof (input) / sizeof (*input);
 }
 
 
-bool check_test (int res, double x1, double x2, DataOut expected) {
+bool check_test (const int res, const double x1, const double x2, const DataOut expected) {
     return (res == expected.num) && 
         (isnan (x1) && isnan (expected.x1) || is_equal_double (x1, expected.x1)) &&
         (isnan (x2) && isnan (expected.x1) || is_equal_double (x2, expected.x2));
