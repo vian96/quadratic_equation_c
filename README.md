@@ -1,6 +1,6 @@
 # Quadratic equation solver
 
-This code allows you to solve quadratic and linear equations. 
+This program allows you to solve quadratic and linear equations. 
 
 ## Solving equations
 
