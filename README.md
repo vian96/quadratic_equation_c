@@ -10,6 +10,8 @@ To use user interface include `"quad_eq.h"` and call `quadratic_solver`. If you 
 
 To execute unit tests inclue `"unit_tests.h"` and call `unit_tests`. 
 
+## Documentation
+
 For more detailed information see documentation in folder docs.
     
 | Returned value | Number of roots | x1 | x2 |
