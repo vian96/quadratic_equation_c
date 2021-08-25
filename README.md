@@ -2,10 +2,10 @@
 
 This program allows you to solve quadratic and linear equations. 
 
-- [Quadratic equation solver](#quadratic-equation-solver)
-  * [Solving equations](#solving-equations)
-  * [Unit tests](#unit-tests)
-  * [Documentation](#documentation)
+##Table of content
+* [Solving equations](#solving-equations)
+* [Unit tests](#unit-tests)
+* [Documentation](#documentation)
 
 ## Solving equations
 
