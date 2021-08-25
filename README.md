@@ -8,8 +8,8 @@ For more detailed information see documentation in folder docs.
     
 | Returned value | Number of roots | x1 | x2 |
 | --- | --- | --- | --- |
-| 3 | Infinite | NaN | NaN |
-| 2 | 2 | Smaller root | Bigger root |
-| 1 | 1 | Root | NaN |
-| 0 | 0 | NaN | NaN |
+| INF_ROOTS | Infinite | NaN | NaN |
+| TWO_ROOTS | 2 | Smaller root | Bigger root |
+| ONE_ROOT | 1 | Root | NaN |
+| NO_ROOTS | 0 | NaN | NaN |
 
