@@ -4,7 +4,7 @@ This code allows you to to solve quadratic and linear equations.
 
 ## Solving equations
 
-To use user interface include `"quad_eq.h"` and call `quadratic_solver`. If you want to solve equation by yourself call function `solve_quad_eq`. 
+To use user interface include `"quad_eq.h"` and call `quadratic_solver`. If you want to solve equations by yourself call function `solve_quad_eq` or `solve_linear_eq`. 
 
 ## Unit tests
 
