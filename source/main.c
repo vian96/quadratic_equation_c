@@ -1,5 +1,8 @@
 #include "unit_tests.h"
 
+/// define _DEBUG to pass unit tests, delete if you need user interface
+#define _DEBUG
+
 /** 
  * @mainpage Quadratic equation solver
  * 
@@ -16,11 +19,14 @@
  * @section testing Unit tests
  * To execute unit tests include `"unit_tests.h"` and call unit_tests.
  * @see unit_tests
-*/
+ */
 
 int main (void) {
-    if (unit_tests ())
-        quadratic_solver ();
+#ifdef _DEBUG
+    unit_tests ();
+#else
+    quadratic_solver ();
+#endif
 
     return 0;
 }

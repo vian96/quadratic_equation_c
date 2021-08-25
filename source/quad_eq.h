@@ -39,7 +39,7 @@ void quadratic_solver ();
  * @param[out] x1 Pointer to the first root
  * @param[out] x2 Pointer to the second root
  * @return number of roots by enum NumberOfRoots 
-*/
+ */
 NumberOfRoots solve_quad_eq (const double a, const double b, const double c, double *x1, double *x2);
 
 /// Solves linear equations
@@ -52,7 +52,7 @@ NumberOfRoots solve_quad_eq (const double a, const double b, const double c, dou
  * @param[in] b The second coefficient
  * @param[out] x Pointer to root
  * @return number of roots by enum NumberOfRoots 
-*/
+ */
 NumberOfRoots solve_linear_eq (const double a, const double b, double *x);
 
 /// Calculates discriminant
@@ -62,7 +62,7 @@ double calc_discriminant (const double a, const double b, const double c);
 /** 
  * User interface for reading double variable
  * @param message name of variable
-*/
+ */
 double read_double_coef (const char *message);
 
 /// Prints roots of equation
@@ -71,7 +71,7 @@ void print_roots (NumberOfRoots num, const double x1, const double x2);
 /// Compares two double variables
 /** 
  * @return true if difference between numbers is less than DOUBLE_EPSILON
-*/
+ */
 bool is_equal_double (const double a, const double b);
 
 /// Clears input buffer until the end of line

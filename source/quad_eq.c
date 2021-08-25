@@ -51,7 +51,10 @@ NumberOfRoots solve_quad_eq (const double a, const double b, const double c, dou
 
         if (is_equal_double (c, 0)) {
             solve_linear_eq (a, b, x1);
-            
+
+            if (is_equal_double (*x1, 0)) 
+                return ONE_ROOT;
+
             if (*x1 > 0) {
                 *x2 = *x1;
                 *x1 = 0;
@@ -96,7 +99,7 @@ NumberOfRoots solve_quad_eq (const double a, const double b, const double c, dou
     }
 }
 
-NumberOfRoots solve_linear_eq (const double a, const double b, double *x){
+NumberOfRoots solve_linear_eq (const double a, const double b, double *x) {
     assert (x);
     assert (isfinite (a));
     assert (isfinite (b));
@@ -119,7 +122,7 @@ NumberOfRoots solve_linear_eq (const double a, const double b, double *x){
     }
 }
 
-double calc_discriminant (const double a, const double b, const double c){
+double calc_discriminant (const double a, const double b, const double c) {
     return b * b - 4 * a * c;
 }
 
@@ -137,7 +140,7 @@ double read_double_coef (const char *name) {
     return x;
 }
 
-void print_roots (NumberOfRoots num, const double x1, const double x2){
+void print_roots (NumberOfRoots num, const double x1, const double x2) {
     switch (num) {
         case NO_ROOTS:
             printf ("There is no real roots in this equation!\n");
@@ -152,7 +155,7 @@ void print_roots (NumberOfRoots num, const double x1, const double x2){
             printf ("Any real number is a root of this equation\n");
             break;
         default:
-            printf ("There is some error in your input, try again\n");
+            printf ("ERROR: expected 0-3 roots, received: %d\n", num);
             break;
     }
 }
