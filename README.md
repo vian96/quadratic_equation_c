@@ -2,7 +2,13 @@
 
 This code allows you to to solve quadratic and linear equations. 
 
-To use user interface include `"quad_eq.h"` and call `quadratic_solver`. If you want to solve equation by yourself call function `solve_quad_eq`. To execute unit tests inclue `"unit_tests.h"` and call `unit_tests`. 
+## Solving equations
+
+To use user interface include `"quad_eq.h"` and call `quadratic_solver`. If you want to solve equation by yourself call function `solve_quad_eq`. 
+
+## Unit tests
+
+To execute unit tests inclue `"unit_tests.h"` and call `unit_tests`. 
 
 For more detailed information see documentation in folder docs.
     
