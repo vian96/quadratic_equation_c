@@ -6,8 +6,12 @@ typedef struct DataOut DataOut;
 #endif
 
 /// Structure to store output data to compare
-struct DataOut {
-    NumberOfRoots num; ///< Number of roots of equation
+struct TestData {
+    double a; ///< The first coefficient of equation
+    double b; ///< The second coefficient of equation
+    double c; ///< The third coefficient of equation
+    
+    int num_of_roots; ///< Number of roots of equation
     
     double x1; ///< The first root
     double x2; ///< The second root
@@ -17,5 +21,5 @@ struct DataOut {
 bool unit_tests ();
 
 /// Function checks if expected and received are the same
-bool check_test (const int res, const double x1, const double x2, const DataOut expected);
+bool check_test (const NumberOfRoots res, const double x1, const double x2, const TestData expected);
 

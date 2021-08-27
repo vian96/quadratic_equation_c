@@ -1,11 +1,8 @@
-/// define _DEBUG to pass unit tests, delete if you need user interface
-#define _DEBUG
+/** @file */ 
+#include "unit_tests.h"
 
-#ifdef _DEBUG
-    #include "unit_tests.h"
-#else
-    #include "quad_eq.h"
-#endif
+/// define _DEBUG to pass unit tests, delete if you need user interface
+//#define _DEBUG
 
 /** 
  * @mainpage Quadratic equation solver
